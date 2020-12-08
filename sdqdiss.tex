@@ -1,0 +1,497 @@
+%% Dissertationsvorlage
+%%
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Siehe https://sdqweb.ipd.kit.edu/wiki/Dokumentvorlagen
+%%
+%% {$HeadURL: https://svnserver.informatik.kit.edu/i43/svn/presentations/SDQ-Dissertations-Vorlage/LaTeX-Dateien/sdqdiss.tex $}
+%% {$LastChangedDate: 2018-08-02 14:23:11 +0200 (Thu, 02 Aug 2018) $}
+%% {$LastChangedRevision: 1078 $}
+%% {$LastChangedBy: burger $}
+
+%% Dokumentoptionen
+%
+% Für das Proposal bzw. vorgelegte Fassung (DIN A4):
+%
+% \documentclass{sdqdiss-a4}
+%
+% Für die Druckfassung im Format von KIT Scientific Publishing (DIN A5)
+% bitte auch für die Bindekorrektur den Umfang des Dokuments eintragen:
+%
+% z.B. \documentclass[largediss]{sdqdiss-a5-ksp}
+% 
+% +------------+-----------------------+
+% | Seitenzahl | Option                |
+% +------------+-----------------------+
+% | < 200      | smalldiss             |
+% | 200–399    | mediumdiss (Standard) |
+% | > 400      | largediss             |
+% +------------+-----------------------+
+
+\documentclass[smalldiss]{sdqdiss-a4}
+%\documentclass{sdqdiss-a5}  
+%\documentclass{sdqdiss-24x17-ksp}  
+
+% Benötigt für die Typewriter-Schriftart
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %special characters
+\usepackage{libertine}
+\usepackage{csquotes}
+% Für Sprachumschaltung
+\usepackage[ngerman,british]{babel}
+\usepackage{pdfpages} 
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+%\usepackage{refcheck} % use with \nocite{*}
+
+% Bibliography
+\usepackage[style=alphabetic, backend=biber, backref=true, hyperref=true, abbreviate=true,url=false, maxbibnames=99, maxcitenames=99, citetracker=true]{biblatex}
+\DefineBibliographyStrings{english}{%
+	backrefpage  = {page}, % for single page number
+	backrefpages = {pages} % for multiple page numbers
+}
+\addbibresource{sdqdiss.bib}
+
+% print url if no doi
+\renewbibmacro*{doi+eprint+url}{%
+	\printfield{doi}%
+	\newunit\newblock%
+	\iftoggle{bbx:eprint}{%
+		\usebibmacro{eprint}%
+	}{}%
+	\newunit\newblock%
+	\iffieldundef{doi}{%
+		\usebibmacro{url+urldate}}%
+	{}%
+}
+  
+\let\openbox\relax
+
+%\usepackage{proof}
+%\usepackage{ntheorem} %for the list of theorems?
+%\usepackage[standard,thref,hyperref]{ntheorem}
+%\usepackage{thm-restate}
+%\usepackage{amssymb}
+%\usepackage[standard,thref,hyperref]{ntheorem}
+%\renewcommand*{\listtheoremname}{List of Theorems}
+
+\usepackage{amsmath}
+\usepackage{amsthm, thmtools}
+\usepackage{mathtools}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argtopb}{arg\,top-b}
+
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mD}{\mathcal{D}}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mG}{\mathcal{G}}
+\newcommand{\mH}{\mathcal{H}}
+\newcommand{\mI}{\mathcal{I}}
+\newcommand{\mJ}{\mathcal{J}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\mY}{\mathcal{Y}}
+\newcommand{\Ind}{\mathbf{1}}
+\newcommand{\nn}{\nonumber\\}
+\newcommand{\eps}{\epsilon}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\epsiloncut}{\epsilon_\mathrm{cut}}
+\newcommand{\Deltadetect}{\Delta_{\mathrm{d}}}
+\newcommand{\Beta}{\textit{Beta}}
+\newcommand{\KL}{d_{\mathrm{KL}}}
+\newcommand{\Expect}{\mathbb{E}}
+
+% Abstract
+\newcommand{\Abstract}[1][Abstract]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}} 
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+
+% Nice tables 
+\usepackage{booktabs}
+\newcommand{\bftab}{\fontseries{b}\selectfont}
+\usepackage{tabularx}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{etoolbox}
+\usepackage{scrhack}
+\usepackage{stackengine}
+\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+
+%Some better line-breaking
+\emergencystretch=1em
+
+%So that 3-digit numbers in the table of contents do not overfull
+\makeatletter
+\renewcommand{\@pnumwidth}{3em} 
+\renewcommand{\@tocrmarg}{4em}
+\makeatother
+
+%EF: To avoid underfull also
+\raggedbottom
+
+%EF: Silence the annoying warnings (see https://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error)
+\pdfsuppresswarningpagegroup=1
+
+\usepackage{subfigure}
+\usepackage[chapter]{algorithm}
+%\usepackage[noend]{algorithmic}
+\usepackage[noend]{algpseudocode}
+
+%\makeatletter
+%\newcommand{\nlast}{\refstepcounter{AlgoLine}\nlset{\theAlgoLine\rlap{*}}}
+%\makeatother
+
+% Control the space between chapters in the table of contents
+% See https://tex.stackexchange.com/questions/396795/how-to-reduce-spacing-between-chapters-in-table-of-content
+\usepackage{tocbasic}
+\DeclareTOCStyleEntry[
+beforeskip=1.0em plus 1pt,% default is 1em plus 1pt
+pagenumberformat=\textbf
+]{tocline}{chapter}
+
+\DeclareTOCStyleEntry[
+beforeskip=1.7em plus 1pt,% default is 1em plus 1pt
+pagenumberformat=\textbf
+]{tocline}{part}
+
+\usepackage{enumitem} % for the nice options in itemize
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\usepackage{url}
+
+\definecolor{uiucblue}{RGB}{19,42,76}
+\definecolor{uiucred}{RGB}{232,74,39}
+\definecolor{kitgreen}{RGB}{43,135,115}
+
+\usepackage[a-1a]{pdfx}
+% I did sudo apt-get install icc-profiles (because No color profile found to use for RGB screen colors..)
+% Nice instructions: https://www.mathstat.dal.ca/~selinger/pdfa/
+% Do not put it earlier ! Or it may change formatting 
+% Some tips and tricks about pdf optimization: https://tex.stackexchange.com/questions/2198/how-to-create-small-pdf-files-for-the-internet
+
+\RequirePackage{hyperref}
+
+\hypersetup{
+	    pdfencoding=unicode,
+		colorlinks=true, 
+		linkcolor=kitgreen,%uiucred,
+		citecolor=uiucblue,%kitgreen,
+		urlcolor=uiucblue,
+		% Now such information is in sdqdiss.xmpdata
+		%pdfauthor={Edouard Fouché},%
+		%pdfcreator={Edouard Fouché},
+		%pdfproducer={Edouard Fouché},
+		%pdfsubject={Dissertation},
+		%pdfkeywords={Data Mining; Data Stream Monitoring; Multivariate Statistics; Online Learning Algorithms; Predictive Maintenance; Anomaly Detection},
+		% Outlier Detection, Text Mining, Self-Supervision, Text Embeddings, Data Mining, Data Cleaning, Document Filtering, Nearest-neighbor search, Anomaly Detection 
+		%pdftitle={Estimating Dependency, Monitoring and Knowledge Discovery in High-Dimensional Data Streams}
+}
+\inputencoding{utf8}
+
+% Workaround because pdfx print none on "Author" and "Keywords"
+% See https://tex.stackexchange.com/questions/439947/missing-author-and-keywords-in-pdf-metadata-when-creating-pdf-a-using-pdfx
+\makeatletter
+\def\sep{; }
+\pdfx@topdfstring\pdfx@Author\xmp@Author
+\pdfx@topdfstring\pdfx@Keywords\xmp@Keywords
+\makeatother
+
+\input{glossaries}
+
+\title{\LARGE Estimating Dependency, Monitoring \\ and Knowledge Discovery in \\ High-Dimensional Data Streams} 
+\author{Edouard Fouché}
+\subject{}
+
+\subtitle{
+\vskip2em
+zur Erlangung des akademischen Grades eines\\[1em]
+{\Large Doktors der Ingenieurwissenschaften}\\[1em]
+{\normalsize von der KIT-Fakult{\"a}t f{\"u}r Informatik}\\
+{\normalsize des Karlsruher Instituts f{\"u}r Technologie (KIT)}\\[1em]
+{\normalsize\textbf{genehmigte}}\\[.5em]
+{\Large\textbf{Dissertation}}
+}
+
+\author{\normalsize{von}\\[.5em]
+{\LARGE Edouard Fouché}\\
+%\normalsize{aus Charenton-le-Pont (Frankreich)}
+}
+
+\publishers{%
+\small
+%Tag der m{\"u}ndlichen Pr{\"u}fung: 15. Juli 2020\\
+%Erster Gutachter: Prof. Dr.-Ing. Klemens Böhm\\
+%Zweiter Gutachter: Asst. Prof. Dr. Junpei Komiyama\\
+\begin{center}
+\parbox{0pt}{
+\begin{tabbing}
+    \=Tag der mündlichen Prüfung: \hspace*{4mm}\=15. Juli 2020\\[2mm]
+    \>Erster Gutachter: \>  Prof. Dr.-Ing. Klemens B\"ohm\\[2mm]
+    \>Zweiter Gutachter: \> Asst. Prof. Dr. Junpei Komiyama\\[2mm]\>
+    \end{tabbing}
+}
+\end{center}
+}
+
+\date{}
+
+%%
+%% Titelseite
+%%
+
+%\addtokomafont{title}{\LARGE} %This reduce the font size of the title slightly
+%\addtokomafont{part}{\LARGE} %This reduce the font size of part slightly
+\addtokomafont{chapter}{\LARGE} %This reduce the font size of chapters slightly
+
+% https://tex.stackexchange.com/questions/32112/squeeze-some-more-lines-on-the-current-page
+% avoid orphans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\begin{document}
+	
+\maketitle
+
+% EF: Be careful: it depends on the license of your individual papers. 
+% obtained from https://www.bibliothek.kit.edu/downloads/PDF/CC_Lizenzvermerke.zip
+% \includepdf{CC-BY-SA}
+
+%%
+%% Abstract/Zusammenfassung
+%%
+% start with roman page numbers
+\frontmatter
+
+\selectlanguage{british}
+\Abstract[Acknowledgements]{}
+
+The journey of an aspiring doctor is long and tedious. At the same time, it is an incredibly fulfilling and transcending experience. I consider this work as my most outstanding achievement so far, but also as a product of my interactions with the people I have met on the way. In this short essay, I want to acknowledge their contributions. 
+
+My first thank goes to my Doktorvater, Prof. Klemens Böhm. Thanks to his tireless feedback, I have tremendously improved the quality of my writing and thinking. He gave me all the freedom I needed to thrive and explore. Yet, he kept a sharp eye on my work and continuously challenged my ideas. In the beginning, I blindly trusted Prof. Böhm about my capacity to go through the process of becoming a doctor. I see him as a mentor, and I hope that our relationship will continue to grow.
+
+The quality of this work would not be the same without the support of Junpei Komiyama. He is my first external co-author and my second reviewer. Although we did not know each other before, Junpei came to my aid as I asked him questions about Multi-Armed Bandits. I am proud of the results of our joint work, featured in this dissertation. Junpei invited me to visit him for a short research stay in Tokyo, and I am grateful for this experience. I now consider him a friend, and I wish him all the best with his academic endeavours. 
+
+I was also fortunate to visit Prof. Jiawei Han in his lab (the Data Mining Group), at UIUC. During my studies, I learned the fundamentals of Data Mining from his books, and the idea of working with him was like a childhood dream. Thank you, Prof. Han, for sharing with me your wisdom and optimism! Thank you for your gifts and your generosity! 
+
+About six years ago, I was an exchange student (via the Erasmus program) at KIT, with the ambition to become fully-enrolled. Prof. Achim Streit, who I met early in my stay, strongly supported my application. Without him, I might never have had the chance to write this dissertation. It was an honour and a great pleasure to have him as an examiner for my defence. I felt very proud to show him how right he was to support me. 
+
+Of course, I shall not forget where I come from. Before studying at KIT, I graduated as an engineer from ESIEE Paris. The privileged and practical training I received from this school was key to my development. I am grateful to my professors and teachers, and in particular: Jean-Francois Bercher, Denis Bureau, Michel Couprie, Jean Cousty, Elia Habib. Their early recognition of my potential gave me the confidence to go as far as I am now. 
+
+I am also thankful to all my students, and I want to address a special thank to Daniel, Rosina, Lucas, Alan, Marco and Florian. I have learned a lot by interacting with you. Thank you for the fruitful exchanges and our long-lasting collaborations!  
+
+Working at IPD would not be the same without the constant help of our secretaries Barbara and Bettina. I would not have been able to focus as much on my research without the support of our system administrators Christian and Herma. I also want to thank Jutta for the orchestration of our teaching activities. Finally, I want to acknowledge the contribution of my colleagues: Vadim, Georg, Adrian, Holger, Michael. Although we may not have always agreed on fundamental questions, our exchanges have always been pleasant and stimulating! I also want to thank our Alumnus, Fabian Keller. Thanks for your insights and letting me stand on your shoulders! Let me cross-reference here the dissertations of my new confrères: \cite{DBLP:phd/dnb/Steinbuss20, DBLP:phd/dnb/Vollmer20, DBLP:phd/dnb/Trittenbach20, DBLP:phd/dnb/Keller15}.
+
+I must also acknowledge my financial sponsors: The DFG Research Training Group 2153: `Energy Status Data – Informatics Methods for its Collection, Analysis and Exploitation' and the German Federal Ministry of Education and Research (BMBF) via Software Campus (01IS17042). Thanks to them, I obtained the resources I needed to conduct my research.
+
+I want to thank the fantastic people I have met from the Roller Derby community. Skating together on the track or the ramp was the best evasion I could imagine. Thanks to all the members from Roller Derby Karlsruhe, and in particular: Track Gyver, Effi Biest and Scarylin Manson. Thanks to the skaters of South German Men's Roller Derby (SGMRD) for giving me my first tournament experience. Even outside of Germany, the Roller Derby community provided a home to me. I want to thank the Twin City Derby Girls and the Prairieland Punishers for skating and hanging out with me! Thank you, Tommy, Crash, Beasly, Splatsy, Funder, Killpop, Naughty, Veligerent, Nikita and Steam. I admire your kindness and courage, and my stay in Illinois would not have been the same without you. 
+
+I would not have done it without the support of my friends. I want to thank Vojtech, Anguel, Bojan, Maxim, Cédric, Matthias, Daniel, Sancho, Jano, Cassandra, Markus, Noémie and Pauline. Thank you so much, Alex, for checking my German abstract, I owe you one! 
+
+Also, I want to thank my family, especially my mother, Béatrice, my father, Emmanuel, and my little sister, Clémence. Despite our occasional disagreements, you have been by my side all this time. I want to thank my grandfather, Florent, for showing me the beauty of nature, and my grandmother, Marie-Claire, for knowing me so well. Thank you, Colette and Jean-Pierre, for your encouragements. I also want to thank those who did not think I should pursue this degree -- You gave me the stamina to go for the extra mile. 
+
+My dearest thanks go to Charlotte. Thank you for being my sparring partner and always discussing my ideas, even at their most primitive stages. Thanks for sharing your life with me and for believing in me. Also, thank you, Chantal and Franck, for your constant support and understanding. 
+
+May you, dear reader, have as much pleasure as I had when I wrote this dissertation!
+
+\bigskip\bigskip\noindent
+Edouard Fouché, 29th November 2020, Karlsruhe. 
+
+\bigskip\bigskip\noindent
+Suggested soundtrack: \textit{Rendez-vous}, Jean-Michel Jarre, 1986 (side one).
+
+\bigskip\noindent 
+Digital version: \url{https://doi.org/10.5445/IR/1000127232}
+%\bigskip\bigskip\noindent
+%
+%% Englischer Abstract
+%\selectlanguage{british}
+\Abstract{}
+
+Data Mining -- known as the process of extracting knowledge from massive data sets -- leads to phenomenal impacts on our society, and now affects nearly every aspect of our lives: from the layout in our local grocery store, to the ads and product recommendations we receive, the availability of treatments for common diseases, the prevention of crime, or the efficiency of industrial production processes. 
+
+However, Data Mining remains difficult when (1) data is high-dimensional, i.e., has many attributes, and when (2) data comes as a stream. Extracting knowledge from high-dimensional data streams is impractical because one must cope with two orthogonal sets of challenges. On the one hand, the effects of the so-called \textit{curse of dimensionality} bog down the performance of statistical methods and yield to increasingly complex Data Mining problems. On the other hand, the statistical properties of data streams may evolve in unexpected ways, a phenomenon known in the community as \textit{concept drift}. Thus, one needs to update their knowledge about data over time, i.e., to monitor the stream. 
+
+While previous work addresses high-dimensional data sets and data streams to some extent, the intersection of both has received much less attention. Nevertheless, extracting knowledge in this setting is advantageous for many industrial applications: identifying patterns from high-dimensional data streams in real-time may lead to larger production volumes, or reduce operational costs. The goal of this dissertation is to bridge this gap. 
+
+We first focus on dependency estimation, a fundamental task of Data Mining. Typically, one estimates dependency by quantifying the strength of statistical relationships. We identify the requirements for dependency estimation in high-dimensional data streams and propose a new estimation framework, \gls{MCDE}, that fulfils them all. We show that \gls{MCDE} leads to efficient dependency monitoring. 
+
+Then, we generalise the task of monitoring by introducing the \gls{S-MAB} algorithms, extending the \gls{MAB} model. We show that our algorithms can efficiently monitor statistics by leveraging user-specific criteria.  
+
+Finally, we describe applications of our contributions to Knowledge Discovery. We propose an algorithm, \gls{SGMRD}, which exploits our new methods to extract patterns, e.g., outliers, in high-dimensional data streams. Also, we present a new approach, that we name \gls{kj-NN}, to detect outlying documents within massive text corpora. 
+
+We support our algorithmic contributions with theoretical guarantees, as well as extensive experiments against both synthetic and real-world data. We demonstrate the benefits of our methods against real-world use cases. Overall, this dissertation establishes fundamental tools for Knowledge Discovery in high-dimensional data streams, which help with many applications in the industry, e.g., anomaly detection, or predictive maintenance.
+
+To facilitate the application of our results and future research, we publicly release our implementations, experiments, and benchmark data via open-source platforms.
+%\enlargethispage{\baselineskip} % allow one more line (exceptionally) https://tex.stackexchange.com/questions/32112/squeeze-some-more-lines-on-the-current-page
+
+%% Deutsche Zusammenfassung
+\selectlanguage{ngerman}
+\Abstract[Zusammenfassung]{}
+\glsresetall
+
+Die Forschung im Bereich Data-Mining --- gemeinhin bekannt als der Prozess der Extraktion von Wissen aus riesigen Datensätzen --- hat phänomenale Auswirkungen auf unsere Gesellschaft. Data-Mining beeinflusst fast alle Aspekte unseres Lebens, sei es die Produktanordnung  im örtlichen Lebensmittelgeschäft, die uns angezeigten Kaufempfehlungen, das Finden passender Therapien für neue Krankheiten, die Verbrechensprävention oder die Effizienz industrieller Produktionsprozesse.
+
+Data-Mining bleibt jedoch schwierig, insbesondere wenn (1) die Daten hochdimensional sind, also viele Attribute haben, und wenn (2) die Daten kontinuierlich eintreffen. Daten, die kontinuierlich eintreffen, werden als Datenstrom bezeichnet. Das Extrahieren von Wissen aus hochdimensionalen Datenströmen ist kompliziert, weil man zwei orthogonale Herausforderungen bewältigen muss: Einerseits verringert der sogenannte \textit{Fluch der Dimensionalität} die Leistungsfähigkeit der statistischen Methoden, was zu immer komplexeren Data-Mining-Aufgaben führt. Andererseits können sich die statistischen Eigenschaften von Datenströmen auf unberechenbare Weise ändern. Dieses Phänomen ist in der Fachwelt als \textit{Konzeptdrift} bekannt. Daher muss unser Wissen über Daten im Laufe der Zeit aktualisiert werden, was auch bedeutet, den Datenstrom ständig zu überwachen.
+
+Während sich die bestehende Literatur bis zu einem gewissen Grad mit hochdimensionalen Datensätzen und Datenströmen auseinandersetzt, ist die Schnittmenge der hier beschriebenen Herausforderungen in der Forschung unterrepräsentiert. Dennoch ist die Extraktion von Wissen in diesem Umfeld für viele industrielle Anwendungen wichtig: Die Echtzeit-Identifizierung von Mustern aus hochdimensionalen Datenströmen kann die Betriebskosten senken oder das Produktionsvolumen erhöhen. Das Ziel dieser Dissertation ist es daher, diese Lücke zu schließen.
+
+Zunächst beschäftigen wir uns mit Verfahren zur Schätzung von Abhängigkeit, einer grundlegenden Aufgabe des Data-Mining. Typischerweise schätzt man dabei die Abhängigkeit durch Quantifizierung der Stärke der statistischen Beziehung zwischen Attributen.
+Diese Schätzung basiert auf den verfügbaren Beobachtungen. In dieser Arbeit identifizieren wir die wünschenswerten Merkmale für solche Verfahren in hochdimensionalen Datenströmen. Anschließend schlagen wir ein neues Verfahren mit dem Namen Monte-Carlo-Abhängigkeitsschätzung (\gls{MCDE}) vor, das all diese Merkmale erfüllt. Wir zeigen, dass \gls{MCDE} eine effiziente Überwachung der Abhängigkeiten ermöglicht.
+
+Im nächsten Schritt verallgemeinern wir die Aufgabe der Überwachung von Statistiken. Wir führen die ``Skalierenden Mehrarmigen Banditen''-Algorithmen (\gls{S-MAB}) als Erweiterung des sogenannten ``Mehrarmigen Banditen''-Modell (\gls{MAB}) ein. Hierbei zeigen wir, dass unsere Algorithmen viele Statistiken effizient überwachen können, indem sie benutzerspezifische Kriterien berücksichtigen.
+
+Schließlich beschreiben wir Anwendungen unserer Beiträge zur Entdeckung von Wissen. Wir schlagen einen Algorithmus mit dem Namen \gls{SGMRD} vor, der unsere neu entwickelten Methoden zur Erleichterung der Unterraumsuche in hochdimensionalen Datenströmen nutzt. Außerdem hilft \gls{SGMRD}, Muster, wie zum Beispiel Ausreißer, zu extrahieren. Abschließend stellen wir eine neue Methode namens kj-Nächste Nachbarn (\gls{kj-NN}) vor, um ungewöhnliche Dokumente innerhalb großer Textkorpora zu erkennen.
+
+Für die von uns eingeführten Algorithmen entwickeln wir zudem theoretische Garantien. Zusätzlich führen wir umfangreiche Experimente mit synthetischen und realen Daten durch. Wir demonstrieren die Vorteile unserer Methoden mit Hilfe von realer Anwendungsfälle. Insgesamt werden in dieser Arbeit grundlegende Werkzeuge für die Wissensentdeckung in hochdimensionalen Datenströmen eingeführt, die bei einem breiten Spektrum von Anwendungen in der Industrie helfen, um beispielsweise Anomalien zu erkennen oder vorausschauender zu warten.
+
+Um die Anwendung unserer Methoden und zukünftige Forschung zu erleichtern, veröffentlichen wir unsere Implementierungen, Experimente und Benchmark-Daten über Open-Source-Plattformen.
+
+% Sprachumschaltung
+\selectlanguage{british}
+
+%%
+%% Inhaltsverzeichnis
+%%
+\cleardoublepage
+\renewcommand{\contentsname}{Table of Contents}
+%\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\addcontentsline{toc}{chapter}{\contentsname}
+{
+	\hypersetup{linkcolor=black}
+	\tableofcontents
+}
+%\tableofcontents
+
+% Linksbündige Einträge ohne Einzug
+%\selecttocstyleoption{tocflat}
+%%
+%% Inhalt
+%%
+% restart with arabic page numbers
+\mainmatter
+
+\include{part1-introduction}
+
+\include{part2-estimating}
+
+\include{part3-monitoring}
+
+\include{part4-mining}
+
+\include{part5-conclusions}
+
+\appendix
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{part}{Appendix}
+\part*{Appendix}
+
+% don't forget to run makeglossaries sdqdiss
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\renewcommand\bibname{Bibliography}
+\addcontentsline{toc}{chapter}{Acronyms}
+\printglossary[type=acronym]
+%\printnoidxglossary[type=acronym]
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\renewcommand\bibname{Bibliography}
+\addcontentsline{toc}{chapter}{Notation}
+\printglossary[type=notation] % , sort=standard
+%\printnoidxglossary[type=notation, sort=standard]
+
+%\glsaddallunused
+
+%Things that are not cited
+%\nocite{*}
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+\addcontentsline{toc}{chapter}{\listfigurename}
+{
+	\hypersetup{linkcolor=black}
+	\listoffigures
+}
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+\addcontentsline{toc}{chapter}{\listtablename}
+{
+	\hypersetup{linkcolor=black}
+	\listoftables
+}
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+\addcontentsline{toc}{chapter}{\listalgorithmname}
+
+{
+	\hypersetup{linkcolor=black}
+	\listofalgorithms
+}
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+\addcontentsline{toc}{chapter}{\listtheoremname}
+{
+	\hypersetup{linkcolor=black}
+	\listoftheorems[ignoreall, show={definition,example,remark,theorem,lemma,proof}]
+}
+
+\cleardoublepage
+\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\renewcommand\bibname{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliography{references}
+%\nocite{*} % Use this to show every citations (even those uncited)
+
+\defbibheading{bibliographysection}{%
+	\section*{#1}%
+	\markboth{#1}{#1}%
+}
+\printbibliography[heading=bibliographysection,title={Bibliography}]
+
+% For the vorgelegte version you should provide here a cv and a list of publications 
+
+%\cleardoublepage
+%\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\addcontentsline{toc}{chapter}{Curriculum Vitae}
+%\chapter*{Curriculum Vitae}
+
+%\input{cv}
+
+%\cleardoublepage
+%\phantomsection %  Uncomment the \phantomsection line if you're using hyperref
+%\addcontentsline{toc}{chapter}{Publications}
+%\chapter*{Publications}
+
+%\input{publications}
+
+\end{document}

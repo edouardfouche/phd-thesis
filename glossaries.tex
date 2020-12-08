@@ -1,0 +1,426 @@
+%glossaries must be loaded after hyperref
+\usepackage[acronym,nomain,sort=def,automake]{glossaries} % nohypertypes={acronym,notation} % automake
+
+%Make all links black (important)
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
+
+\newglossary[nlg]{notation}{not}{ntn}{Notation}
+
+\newglossaryentry{D}{% This entry goes in the`notation' glossary:
+type=notation,
+name={$D$},
+text={D},
+description={A set of attributes, $\gls{D}=\{s_1, \dots, s_{|\gls{D}|}\}$}
+}
+
+\newglossaryentry{B}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$B$},
+	text={B},
+	description={An open list of observations, $\gls{B} = (\vec{\gls{x}}_{1}, \vec{\gls{x}}_{2}, \dots)$}
+}
+
+\newglossaryentry{x}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\vec{x}_{i}$},
+	text={x},
+	description={An observation, i.e., a vector of values with $|\gls{D}|$ attributes, $\vec{\gls{x}}_{i} = \langle \gls{x}_{ij} \rangle_{j \in \{1, \dots, |\gls{D}|\}}$}
+} %TODO: Maybe this one is under-represented? 
+
+\newglossaryentry{s_i}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$s_i$},
+	text={s_i},
+	description={An attribute in a data stream $\gls{D}$, a.k.a. dimension, variable}
+}
+
+\newglossaryentry{t}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$t$},
+	text={t},
+	description={The current time step}
+}
+
+\newglossaryentry{w}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$w$},
+	text={w},
+	description={The number of observations in a sliding window}
+}
+
+\newglossaryentry{W_t}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$W_t$},
+	text={W_t},
+	description={A window containing the latest $\gls{w}$ observations, $\gls{W_t} = \left(\vec{\gls{x}}_{\gls{t}-\gls{w}+1}, \dots, \vec{\gls{x}}_{\gls{t}} \right)$}
+}
+\newglossaryentry{S}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$S$},
+	text={S},
+	description={A subspace, i.e., a projection on $|\gls{S}|$ attributes, $\gls{S} \subseteq \gls{D}$, $|\gls{S}| \leq |\gls{D}|$}
+}
+\newglossaryentry{X_{s_i}}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$X_{s_i}$},
+	text={X_{s_i}},
+	description={A random variable associated with an attribute $\gls{s_i} \in \gls{D}$}
+}
+
+\newglossaryentry{Num}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathit{Num}$},
+	text={Num},
+	description={A set of attributes of numerical type}
+}
+
+\newglossaryentry{Ord}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathit{Ord}$},
+	text={Ord},
+	description={A set of attributes of ordinal type}
+}
+
+\newglossaryentry{Cat}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathit{Cat}$},
+	text={Cat},
+	description={A set of attributes of categorical type}
+}
+\newglossaryentry{p(X)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$p(X)$},
+	text={p(X)},
+	description={The joint probability distribution function (\textit{pdf}) of a random vector $\gls{X}$}
+}
+
+\newglossaryentry{X}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$X$},
+	text={X},
+	description={A random vector, $\gls{X} = \left \langle \gls{X_{s_i}}\right \rangle  _{\gls{s_i} \in \gls{S}}$}
+}
+
+
+\newglossaryentry{p_{s_{i}}(X)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$p_{s_{i}}(X)$},
+	text={p_{s_{i}}(X)},
+	description={The marginal probability distribution function (\textit{pdf}) of variable $\gls{s_i}$}
+}
+
+\newglossaryentry{P}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathcal{P}$},
+	text={\mathcal{P}},
+	description={The power set (e.g., of a subspace $\gls{S}$ or set of attributes $\gls{D}$)}
+}
+
+%%%%%%%%%%%%%%%% Bandits
+\newglossaryentry{K}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$K$},
+	text={K},
+	description={The number of arms in a \acrshort{MAB} problem}
+}
+
+
+\newglossaryentry{L}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$L$},
+	text={L},
+	description={The number of plays per round in a \acrshort{MP-MAB} problem}
+}
+
+\newglossaryentry{mu_i}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mu_i$},
+	text={\mu_i},
+	description={The expected reward of arm $i$}
+}
+
+\newglossaryentry{T}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$T$},
+	text={T},
+	description={The total number of time steps (potentially infinite in streams)}
+}
+
+
+\newglossaryentry{I(t)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$I(t)$},
+	text={I(t)},
+	description={The set of arms selected at time $\gls{t}$}
+}
+\newglossaryentry{X(t)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$X(t)$},
+	text={X(t)},
+	description={The reward vector received at time $\gls{t}$}
+}
+\newglossaryentry{X_i(t)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$X_i(t)$},
+	text={X_i(t)},
+	description={The reward vector received from arm $i$ at time $\gls{t}$}
+}
+\newglossaryentry{N_i(t)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$N_i(t)$},
+	text={N_i(t)},
+	description={The number of draws of arm $i$ before time $\gls{t}$}
+}
+\newglossaryentry{S_i(t)}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$S_i(t)$},
+	text={S_i(t)},
+	description={The sum of the rewards obtained from arm $i$ before time $\gls{t}$}
+}
+
+
+\newglossaryentry{eta^*}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\eta^*$},
+	text={\eta^*},
+	description={The efficiency factor of a \acrshort{S-MAB}, controling the trade-off between the cost of playing the reward obtained}
+}
+
+\newglossaryentry{L^*}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$L^*$},
+	text={L^*},
+	description={The optimal number of plays of a \acrshort{S-MAB}, see Equation \ref{eq2}}
+}
+
+%%%% Subspace Search in Data Streams
+
+\newglossaryentry{q}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$q$},
+	text={q},
+	description={A \gls{D-SQF} (cf. Definition \ref{def:sqf})}
+}
+
+\newglossaryentry{qt}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$q_t$},
+	text={q_t},
+	description={The \gls{D-SQF} $\gls{q}$ at time $\gls{t}$}
+}
+
+
+\newglossaryentry{SS*}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathbb{S}^*$},
+	text={\mathbb{S}^*},
+	description={An optimal set of subspaces (cf. Definition \ref{def:optimalset})}
+}
+
+\newglossaryentry{SS*t}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathbb{S}^*_t$},
+	text={\mathbb{S}^*_t},
+	description={The optimal set of subspaces $\gls{SS*}$ at time $\gls{t}$}
+}
+
+\newglossaryentry{SSt}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathbb{S}_t$},
+	text={\mathbb{S}_t},
+	description={An approximation of $\gls{SS*t}$}
+}
+
+\newglossaryentry{SSS}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathcal{S}$},
+	text={\mathcal{S}},
+	description={An arbitrary set of subspaces}
+}
+
+
+%%%% Text outlier detection
+
+\newglossaryentry{Doc}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$Doc$},
+	text={Doc},
+	description={A set of documents, $\gls{Doc} = \{\gls{d}_1, \gls{d}_2, \dots, \gls{d}_{|\gls{Doc}|}\}$}
+}
+
+\newglossaryentry{d}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$d$},
+	text={d},
+	description={A document, $\gls{d} \in \gls{Doc}$}
+}
+
+\newglossaryentry{Phr}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$Phr$},
+	text={Phr},
+	description={A set of phrases, $\gls{Phr} = \{\gls{p}_1, \gls{p}_2, \dots, \gls{p}_{|\gls{Phr}|}\}$}
+}
+
+\newglossaryentry{p}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$p$},
+	text={p},
+	description={A phrase, $\gls{p} \in \gls{Phr}$}
+}
+
+
+\newglossaryentry{O}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$\mathcal{O}$},
+	text={\mathcal{O}},
+	description={A set of text objects (documents and phrases), $\gls{O} = \gls{Doc} \cup \gls{Phr}$}
+}
+
+\newglossaryentry{o}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$o$},
+	text={o},
+	description={An object (document or phrase), $\gls{o} \in \gls{O}$}
+}
+
+\newglossaryentry{V}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$V$},
+	text={V},
+	description={An embedding vector representation $\gls{V}: \gls{O} \mapsto \mathbb{R}^n$ with $n$ dimensions}
+}
+\newglossaryentry{Sim}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$Sim$},
+	text={Sim},
+	description={A similarity function between text objects, $\gls{Sim}: \gls{O}^2 \mapsto [0,1]$}
+}
+\newglossaryentry{C}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$C$},
+	text={C},
+	description={A set of classes, $\gls{C} = \{\gls{c}_1, \dots, \gls{c}_{|\gls{C}|}\}$}
+}
+
+\newglossaryentry{c}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$c$},
+	text={c},
+	description={A class, $\gls{c} \in \gls{C}$}
+}
+
+
+\newglossaryentry{y}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$y$},
+	text={y},
+	description={An initial classification function of documents, $\mathit{\gls{y}}: \gls{Doc} \mapsto \gls{C}$}
+}
+
+\newglossaryentry{r}{% This entry goes in the`notation' glossary:
+	type=notation,
+	name={$r$},
+	text={r},
+	description={A representativeness function of phrases, $\mathit{\gls{r}}: \gls{Phr} \times \gls{C} \mapsto \gls{C}$}
+}
+
+\setacronymstyle{long-short}
+%TODO: Maybe add the citations.
+
+\newacronym{ADWIN}{ADWIN}{Adaptive Windowing \cite{DBLP:conf/sdm/BifetG07}}
+
+\newacronym{ANCS}{ANCS}{Average Negative Cosine Similarity}
+\newacronym{AP}{AP}{Average Precision}
+
+\newacronym{AT-RNN}{AT-RNN}{Attention-Based Hierarchical RNN  \cite{DBLP:conf/naacl/YDHSH16}}
+
+\newacronym{AUC}{AUC}{Area Under the Curve (e.g., of the ROC curve)}
+
+\newacronym{Bioliq}{Bioliq}{Biomass-to-Liquid}
+
+\newacronym{CE}{CE}{Cumulative Entropy \cite{DBLP:conf/iwinac/CrescenzoL09}}
+\newacronym{CMAB}{CMAB}{Combinatorial MAB}
+\newacronym{CMI}{CMI}{Cumulative Mutual Information \cite{DBLP:conf/sdm/BohmKMNV13}}
+\newacronym{CNN}{CNN}{Convolutional Neural Network}
+\newacronym{CSP}{CSP}{Chi-Squared-P}
+\newacronym{CUCB}{CUCB}{Combinatorial UCB \cite{DBLP:conf/nips/ChenHLLLL16}}
+\newacronym{CVDD}{CVDD}{Context Vector Data Description  \cite{DBLP:conf/acl/RuffZVSK19}}
+
+\newacronym{DO}{DO}{Dynamic Oracle}
+\newacronym{dTS}{dTS}{Discounted Thompson Sampling \cite{DBLP:journals/corr/RajK17}}
+\newacronym{D-SQF}{D-SQF}{Dimension-Subspace Quality Function}
+
+\newacronym{EDM}{EDM}{Exploratory Data Mining}
+\newacronym{EG}{EG}{Epsilon-Greedy \cite{DBLP:books/lib/SuttonB98}}
+\newacronym{Exp3}{Exp3}{Exponential-weight algorithm for Exploration and Exploitation \cite{DBLP:journals/eccc/ECCC-TR00-068}}
+\newacronym{Exp3.M}{Exp3.M}{Exp3 with Multiple plays \cite{DBLP:conf/alt/UchiyaNK10}}
+
+\newacronym{GMD}{GMD}{Greedy Maximum Deviation \cite{DBLP:journals/ijdsa/TrittenbachB19}}
+
+\newacronym{JoSE}{JoSE}{Joint Spherical Embedding \cite{meng2019spherical}}
+
+\newacronym{HiCS}{HiCS}{High Contrast Subspaces \cite{DBLP:conf/icde/KellerMB12}}
+
+\newacronym{II}{II}{Interaction Information \cite{DBLP:journals/tit/McGill54}}
+\newacronym{IID}{IID}{Intrinsic Dimensionality Dependency \cite{DBLP:conf/icpr/0003CNBH16}}
+
+\newacronym{k-ANCS}{k-ANCS}{ANCS from the $k$ nearest neighbours}
+\newacronym{KDD}{KDD}{Knowledge Discovery from Data}
+\newacronym{kj-NN}{kj-NN}{kj-Nearest Neighbours}
+\newacronym{KL-UCB}{KL-UCB}{Kullback-Leibler UCB}
+\newacronym{KL-S}{KL-S}{Kullback-Leibler Scaling}
+
+\newacronym{KSP}{KSP}{Kolmogorov-Smirnov-P}
+
+\newacronym{LOF}{LOF}{Local Outlier Factor \cite{DBLP:conf/sigmod/BreunigKNS00}}
+
+\newacronym{MAB}{MAB}{Multi-Armed Bandit}
+\newacronym{MAC}{MAC}{Multivariate Maximal Correlation \cite{DBLP:conf/icml/NguyenMVEB14}}
+\newacronym{MCDE}{MCDE}{Monte Carlo Dependency Estimation}
+\newacronym{MI}{MI}{Mutual Information}
+\newacronym{MISE}{MISE}{Mutual Information Stream Estimation \cite{DBLP:conf/ssdbm/KellerMB15}}
+
+
+\newacronym{MP-KL-UCB}{MP-KL-UCB}{Multiple-Play Kullback-Leibler UCB \cite{DBLP:journals/jmlr/GarivierC11, DBLP:conf/icml/KomiyamaHN15}}
+\newacronym{MP-MAB}{MP-MAB}{Multiple-Play Multi-Armed Bandit}
+\newacronym{MP-TS}{MP-TS}{Multiple-Play Thompson Sampling \cite{DBLP:conf/icml/KomiyamaHN15}}
+\newacronym{MS}{MS}{Multivariate Spearman \cite{SCHMID2007407}}
+
+\newacronym{MWP}{MWP}{Mann-Withney-P}
+
+\newacronym{RCNN}{RCNN}{Recurrent CNN \cite{DBLP:conf/aaai/LaiXLZ15}}
+
+\newacronym{RNN}{RNN}{Recurrent Neural Network}
+\newacronym{RO}{RO}{Random Oracle}
+\newacronym{ROC}{ROC}{Receiver Operating Characteristic}
+%\newacronym{RS}{RS}{Randomized Subspace}
+\newacronym{RS-Hash}{RS-Hash}{Randomised Subspace Hashing \cite{DBLP:conf/icdm/SatheA16}}
+\newacronym{RS-Stream}{RS-Stream}{Randomised Subspace Hashing in Streams \cite{DBLP:journals/kais/SatheA18}}
+
+\newacronym{S-KL-UCB}{S-KL-UCB}{Scaling Kullback-Leibler UCB}
+\newacronym{S-MAB}{S-MAB}{Scaling Multi-Armed Bandit}
+\newacronym{S-TS}{S-TS}{Scaling Thompson Sampling}
+\newacronym{S-TS-ADWIN}{S-TS-ADWIN}{Scaling Thompson Sampling with ADWIN}
+
+\newacronym{SGMRD}{SGMRD}{Streaming Greedy Maximum Random Deviation}
+\newacronym{SO}{SO}{Static Oracle}
+\newacronym{SW-UCB}{SW-UCB}{Sliding Window UCB  \cite{Garivier2008}}
+
+\newacronym{TC}{TC}{Total Correlation \cite{DBLP:journals/ibmrd/Watanabe60}}
+\newacronym{TONMF}{TONMF}{Text Outliers using Non-negative Matrix Factorisation \cite{DBLP:conf/sdm/KannanWAP17}}
+
+\newacronym{TS}{TS}{Thompson Sampling \cite{Thompson1933}}
+
+\newacronym{UCB}{UCB}{Upper Confidence Bound  \cite{DBLP:journals/siamcomp/AuerCFS02}}
+\newacronym{UDS}{UDS}{Universal Dependency Score \cite{DBLP:conf/sdm/NguyenMV16}}
+\newacronym{UMC}{UMC}{Unbiased Multivariate Correlation \cite{DBLP:conf/aaai/WangRNBMX17}}
+
+\newacronym{VD-CNN}{VD-CNN}{Very Deep CNN \cite{DBLP:conf/eacl/SchwenkBCL17}}
+\newacronym{vMF}{vMF}{von Mises-Fisher}
+\newacronym{VMF-Q}{VMF-Q}{Von Mises-Fisher Quantiles \cite{DBLP:conf/emnlp/ZhuangWTKH17}}
+
+\newacronym{W-CNN}{W-CNN}{Word-level CNN \cite{DBLP:conf/emnlp/Kim14}}
+
+\makeglossaries
+%\makenoidxglossaries %no working with automake

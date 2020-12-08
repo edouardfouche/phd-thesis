@@ -1,0 +1,8 @@
+pdfcrop cross_2D_0_nomarginal.pdf cross_2D_0_nomarginal-crop.pdf
+pdfcrop cross_2D_0_marginal.pdf cross_2D_0_marginal-crop.pdf
+pdfcrop circle_2D_0_marginal.pdf circle_2D_0_marginal-crop.pdf
+pdfcrop circle_2D_0_nomarginal.pdf circle_2D_0_nomarginal-crop.pdf
+pdfcrop linear_2D_0_nomarginal.pdf linear_2D_0_nomarginal-crop.pdf
+pdfcrop linear_2D_0_marginal.pdf linear_2D_0_marginal-crop.pdf
+pdfcrop independent_2D_0_marginal.pdf independent_2D_0_marginal-crop.pdf
+pdfcrop independent_2D_0_nomarginal.pdf independent_2D_0_nomarginal-crop.pdf

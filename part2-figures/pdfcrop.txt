@@ -1,0 +1,1 @@
+pdfcrop --margin '5 0 5 13' mixed_0_2D_homo2-compressed.pdf mixed_0_2D_homo2-compressed-crop.pdf

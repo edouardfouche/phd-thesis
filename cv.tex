@@ -1,0 +1,112 @@
+
+\newcommand{\hintfont}{}
+
+\newlength{\hintscolumnwidth}
+\setlength{\hintscolumnwidth}{0.14\textwidth}
+
+\newlength{\separatorcolumnwidth}
+\setlength{\separatorcolumnwidth}{0.04\textwidth}
+
+\newlength{\maincolumnwidth}
+\setlength{\maincolumnwidth}{\textwidth}
+\addtolength{\maincolumnwidth}{-10pt}
+\addtolength{\maincolumnwidth}{-\separatorcolumnwidth}
+\addtolength{\maincolumnwidth}{-\hintscolumnwidth}
+
+% usage: \section{<title>}
+\newcommand*{\cvsection}[1]{%
+	\vspace{2.5ex plus 1ex minus 1.2ex}%
+	\parbox[m]{\maincolumnwidth}{\large\scshape{#1}}%
+	\vspace{0.5ex plus 1ex minus .2ex}%
+}
+
+\newcommand*{\cvline}[2]{%
+	\parbox[t]{\hintscolumnwidth}{\raggedleft{}\hintfont{}#1}%
+	\hspace{\separatorcolumnwidth}%
+	\parbox[t]{\maincolumnwidth}{#2}%
+}
+
+\newcommand*{\cvlinex}[2]{%
+	\parbox[t]{\hintscolumnwidth}{\raggedleft{}#1}%
+	\hspace{\separatorcolumnwidth}%
+	\parbox[t]{\maincolumnwidth}{\raggedright{}#2}%
+}
+
+\newcommand*{\cvfullline}[1]{%
+	\parbox[t]{.5\hintscolumnwidth}{\raggedleft{}\hintfont{}~}%
+	\hspace{\separatorcolumnwidth}%
+	\parbox[t]{\maincolumnwidth}{\raggedright{}#1}%
+}
+
+\noindent\cvsection{Personal Data}
+
+\noindent\cvline{Full name}{Edouard Pierre Joseph Fouché}
+
+\noindent\cvline{Birth}{29th November 1992}
+
+\noindent\cvline{Nationality}{French}
+
+\noindent\cvline{Website}{\url{https://edouardfouche.com}}
+
+\vspace{2ex}
+\noindent \cvsection{University Education}
+
+\noindent\cvline{2016-2020}{Ph.D. in Data Mining at the Karlsruhe Institute of Technology (KIT) in the chair for Program Structures and Data Organisation, advised by Prof.~Dr.-Ing.~Klemens~B{\"o}hm.
+	\vskip4pt
+}
+
+\noindent\cvline{2015-2016}{Master of Computer Science (M.~Sc.) at the Karlsruhe Institute of Technology (KIT). Graduated with 1.4 German GPA (very good).
+	\vskip4pt
+}
+
+\noindent\cvline{2010-2015}{Diplôme d'Ingénieur (Dipl.~Ing., equivalent to M.~Sc. in Engineering) at ESIEE Paris. Major: Computer Science. Graduated with highest honours.
+	\vskip4pt
+}
+
+\noindent\cvline{2010-2013}{Bachelor in Mathematics and Computer Science (B.~Sc.) at Université Paris-Est Marne-la-Vallée. Graduated with highest honours. 
+	\vskip4pt
+}
+
+\vspace{2ex}
+\noindent \cvsection{Work Experience}
+
+\noindent\cvline{2016-2020}{Researcher at the Karlsruhe Institute of Technology (KIT) in the chair for Program Structures and Data Organisation.
+	\vskip4pt
+}
+
+\noindent\cvline{2015-2016}{Working student at IBM Research \& Development GmbH, Böblingen.
+	\vskip4pt
+}
+
+\noindent\cvline{2014-2016}{Working student at the Karlsruhe Institute of Technology (KIT).
+	\vskip4pt
+}
+
+%\noindent\cvline{Summer'12}{Software Developer Intern at GDF Suez (now known as ``Engie'')
+%	\vskip4pt
+%}
+
+
+\vspace{2ex}
+\noindent \cvsection{Honors \& Awards}
+
+\noindent\cvline{2019}{SSDBM Best Paper Award (see \cite{DBLP:conf/ssdbm/FoucheB19}).
+	\vskip4pt
+}
+
+\noindent\cvline{2018}{Selected Participant in the \href{https://softwarecampus.de/}{Software Campus} program.
+	\vskip4pt
+}
+
+\noindent\cvline{2015}{"Parcours d'Excellence" ESIEE Paris 2015 (Category: International).
+	\vskip4pt
+}
+
+\vspace{2ex}
+\noindent \cvsection{Personal Interests}
+
+Photography, travelling, hiking, roller derby.
+
+%\cvline{2014-2015}{Visiting student (``Erasmus'') at the Karlsruhe Institute of Technology (KIT).\\
+%	\vskip4pt
+%}

@@ -1,0 +1,299 @@
+%% Dissertationsvorlage
+%%
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Siehe https://sdqweb.ipd.kit.edu/wiki/Dokumentvorlagen
+%%
+%% {$HeadURL: https://svnserver.informatik.kit.edu/i43/svn/presentations/SDQ-Dissertations-Vorlage/LaTeX-Dateien/sdqdiss.tex $}
+%% {$LastChangedDate: 2018-08-02 14:23:11 +0200 (Thu, 02 Aug 2018) $}
+%% {$LastChangedRevision: 1078 $}
+%% {$LastChangedBy: burger $}
+
+%% Dokumentoptionen
+%
+% Für das Proposal bzw. vorgelegte Fassung (DIN A4):
+%
+% \documentclass{sdqdiss-a4}
+%
+% Für die Druckfassung im Format von KIT Scientific Publishing (DIN A5)
+% bitte auch für die Bindekorrektur den Umfang des Dokuments eintragen:
+%
+% z.B. \documentclass[largediss]{sdqdiss-a5-ksp}
+% 
+% +------------+-----------------------+
+% | Seitenzahl | Option                |
+% +------------+-----------------------+
+% | < 200      | smalldiss             |
+% | 200–399    | mediumdiss (Standard) |
+% | > 400      | largediss             |
+% +------------+-----------------------+
+
+\documentclass[smalldiss]{sdqdiss-a4}
+%\documentclass{sdqdiss-a5}  
+%\documentclass{sdqdiss-24x17-ksp}  
+
+% Benötigt für die Typewriter-Schriftart
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{csquotes}
+% Für Sprachumschaltung
+\usepackage[ngerman,british]{babel}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+% Bibliography
+\usepackage[style=alphabetic, backend=biber, backref=true, hyperref=true, abbreviate=true,url=false, maxbibnames=99]{biblatex}
+\DefineBibliographyStrings{english}{%
+	backrefpage  = {cited on page}, % for single page number
+	backrefpages = {cited on pages} % for multiple page numbers
+}
+\addbibresource{sdqdiss.bib}
+
+
+
+\let\openbox\relax
+
+%\usepackage{amsthm}
+
+%\usepackage{proof}
+%\usepackage{ntheorem} %for the list of theorems?
+%\usepackage[standard,thref,hyperref]{ntheorem}
+%\usepackage{thmtools}
+
+%usepackage{thmtools}
+%\usepackage{thm-restate}
+\usepackage{amsmath}
+
+%\usepackage{amssymb}
+
+%\usepackage[standard,thref,hyperref]{ntheorem}
+%\usepackage{thmtools}
+%\renewcommand*{\listtheoremname}{List of Theorems}
+
+\usepackage{amsthm, thmtools}
+
+
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{example}{Example}[chapter]%[section]
+\newtheorem{remark}{Remark}[chapter]%[section]
+
+
+
+\usepackage{mathtools}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argtopb}{arg\,top-b}
+%JK
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mD}{\mathcal{D}}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mG}{\mathcal{G}}
+\newcommand{\mH}{\mathcal{H}}
+\newcommand{\mI}{\mathcal{I}}
+\newcommand{\mJ}{\mathcal{J}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\mY}{\mathcal{Y}}
+\newcommand{\Ind}{\mathbf{1}}
+\newcommand{\nn}{\nonumber\\}
+\newcommand{\eps}{\epsilon}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\epsiloncut}{\epsilon_\mathrm{cut}}
+\newcommand{\Deltadetect}{\Delta_{\mathrm{d}}}
+\newcommand{\Beta}{\textit{Beta}}
+\newcommand{\KL}{d_{\mathrm{KL}}}
+\newcommand{\Expect}{\mathbb{E}}
+
+
+% Abstract
+\newcommand{\Abstract}[1][Abstract]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}} 
+
+%% Nur als Beispiel – im endgültigen Dokument bitte entfernen
+%\usepackage{blindtext}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+
+% Schöne Tabellen
+\usepackage{booktabs}
+\newcommand{\bftab}{\fontseries{b}\selectfont}
+\usepackage{tabularx}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{etoolbox}
+\usepackage{scrhack}
+\usepackage{stackengine}
+\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+
+%Some better line-breaking
+\emergencystretch=1em
+
+%\usepackage{appendix}
+%% /Beispiel
+%\usepackage[utf8]{inputenc} %special characters
+
+%So that 3-digit numbers in the table of contents do not overfull
+\makeatletter
+\renewcommand{\@pnumwidth}{3em} 
+\renewcommand{\@tocrmarg}{4em}
+\makeatother
+
+%EF: To avoid underfull also
+\raggedbottom
+
+%EF: Silence the annoying warnings (see https://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error)
+\pdfsuppresswarningpagegroup=1
+
+\usepackage{subfigure}
+\usepackage[chapter]{algorithm}
+%\usepackage[noend]{algorithmic}
+\usepackage[noend]{algpseudocode}
+
+%\makeatletter
+%\newcommand{\nlast}{\refstepcounter{AlgoLine}\nlset{\theAlgoLine\rlap{*}}}
+%\makeatother
+
+%Control the space between chapters in the table of contents
+%see https://tex.stackexchange.com/questions/396795/how-to-reduce-spacing-between-chapters-in-table-of-content
+\usepackage{tocbasic}
+\DeclareTOCStyleEntry[
+beforeskip=1.0em plus 1pt,% default is 1em plus 1pt
+pagenumberformat=\textbf
+]{tocline}{chapter}
+
+\DeclareTOCStyleEntry[
+beforeskip=1.7em plus 1pt,% default is 1em plus 1pt
+pagenumberformat=\textbf
+]{tocline}{part}
+
+
+\usepackage{enumitem} % for the nice options in itemize
+
+%\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\usepackage{url}
+
+\definecolor{uiucblue}{RGB}{19,42,76}
+\definecolor{uiucred}{RGB}{232,74,39}
+\definecolor{kitgreen}{RGB}{43,135,115}
+
+\usepackage[colorlinks=true, 
+linkcolor=kitgreen,%uiucred,
+citecolor=uiucblue,%kitgreen,
+urlcolor=uiucblue,
+pdfauthor={Edouard Fouché},%
+pdfcreator={Edouard Fouché},
+pdfproducer={Edouard Fouché},
+pdfsubject={Dissertation},
+pdfkeywords={Data Mining; Data Stream Monitoring; Multivariate Statistics; Online Learning Algorithms; Predictive Maintenance; Anomaly Detection},
+% Outlier Detection, Text Mining, Self-Supervision, Text Embeddings, Data Mining, Data Cleaning, Document Filtering, Nearestr-neighbor search, Anomaly Detection 
+pdftitle={Estimating Dependency, Monitoring and Knowledge Discovery in High-Dimensional Data Streams},%
+pdftex]{hyperref} %for the links in the table
+
+%TODO: I could/should add some more notations 
+\input{glossaries}
+%\usepackage[standard,thref,hyperref]{ntheorem}
+
+
+% hidelinks, colorlinks=false
+%%
+%% n des Dokuments
+%%
+
+%\title{Estimating Dependency in High-Dimensional Data Streams}
+\title{\LARGE Estimating Dependency, Monitoring \\ and Knowledge Discovery in \\ High-Dimensional Data Streams} 
+% TODO: Is it better than: High-Dimensional Data Stream Mining: \\ Estimating Dependency, Monitoring \\ and Knowledge Discovery
+
+%TODO: Mining in???
+%TODO: Maybe it is better?: Estimating Dependency, Monitoring and High-Dimensional Data Stream Mining 
+%TODO: Maybe:  Estimating Dependency, Monitoring and Mining in High-Dimensional Data Streams
+\author{Edouard Fouché}
+\subject{}
+
+\subtitle{
+	\vskip2em
+	zur Erlangung des akademischen Grades eines\\[1em]
+	{\Large Doktors der Ingenieurwissenschaften /}\\
+	{\Large Doktors der Naturwissenschaften}\\[1em]
+	{\normalsize der Fakult{\"a}t f{\"u}r Informatik}\\
+	{\normalsize des Karlsruher Instituts f{\"u}r Technologie (KIT)}\\[1em]
+	{\normalsize\textbf{vorgelegte}}\\[.5em]
+	{\Large\textbf{Dissertation}}
+}
+
+\author{\normalsize{von}\\[.5em]
+	{\LARGE Edouard Fouché}\\
+	%\normalsize{aus Mosbach (Baden)}
+}
+
+\publishers{%
+	\small
+	%Tag der m{\"u}ndlichen Pr{\"u}fung: 15. Juli 2020\\
+	%Erster Gutachter: Prof. Dr.-Ing. Klemens Böhm\\
+	%Zweiter Gutachter: Asst. Prof. Dr. Junpei Komiyama\\
+	\begin{center}
+		\parbox{0pt}{
+			\begin{tabbing}
+				\=Tag der mündlichen Prüfung: \hspace*{2mm}\=15. Juli 2020\\[2mm]
+				\>Erster Gutachter: \>  Prof. Dr.-Ing. Klemens B\"ohm\\[2mm]
+				\>Zweiter Gutachter: \> Asst. Prof. Dr. Junpei Komiyama\\[2mm]\>
+			\end{tabbing}
+		}
+	\end{center}
+	
+}
+
+\date{}
+
+%%
+%% Titelseite
+%%
+
+%\DeclareUnicodeCharacter{0308}{*************************************}
+%\DeclareUnicodeCharacter{0302}{î}
+
+%\addtokomafont{title}{\LARGE} %This reduce the font size of the title slightly
+%\addtokomafont{part}{\LARGE} %This reduce the font size of part slightly
+\addtokomafont{chapter}{\LARGE} %This reduce the font size of chapters slightly
+%TODO: May them somewhat larger
+
+% https://tex.stackexchange.com/questions/32112/squeeze-some-more-lines-on-the-current-page
+% avoid orphans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+
+\pagenumbering{gobble} % switch off numbering 
+\begin{document}
+
+
+\chapter*{Publications}
+
+	
+\input{publications}
+
+
+
+\end{document}
